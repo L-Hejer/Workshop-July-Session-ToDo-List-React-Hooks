@@ -7,8 +7,8 @@ import './App.css';
 
 const App = () => {
   const [todos, setTodos] = useState([
-    { text: 'Go Shopping', id: 0, isCompleted: false, isEdited: false },
-    { text: 'Walk The Dog', id: 1, isCompleted: false, isEdited: false },
+    { text: 'Go Shopping', id: 0, isCompleted: false },
+    { text: 'Walk The Dog', id: 1, isCompleted: false },
   ]);
 
   const addTodo = (newTodo) => {
@@ -31,10 +31,23 @@ const App = () => {
       : todos;
   };
 
+  const completeTodo = (id) => {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo
+      )
+    );
+  };
+
   return (
     <div className="App">
       <AddTodo addTodo={addTodo} />
-      <TodoList todos={todos} deleteTodo={deleteTodo} editTodo={editTodo} />
+      <TodoList
+        todos={todos}
+        deleteTodo={deleteTodo}
+        editTodo={editTodo}
+        completeTodo={completeTodo}
+      />
     </div>
   );
 };

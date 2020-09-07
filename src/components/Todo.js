@@ -1,15 +1,14 @@
 import React from 'react';
 import EditTodo from './EditTodo';
 
-const Todo = ({ todo, deleteTodo, editTodo }) => {
+const Todo = ({ todo, deleteTodo, editTodo, completeTodo }) => {
   return (
     <div>
       <ul id="myUL">
         <li>
           <p
-            style={{
-              display: 'inline',
-            }}
+            onClick={() => completeTodo(todo.id)}
+            style={todo.isCompleted ? { textDecoration: 'line-through' } : {}}
           >
             {todo.text}
           </p>
